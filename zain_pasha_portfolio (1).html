@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zain Pasha S — Customer Success Executive</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0b1628;--navy2:#152236;--slate:#1e3a5f;--gold:#b8872a;--gold-light:#d4a843;--gold-pale:#f5e9d0;--cream:#faf8f4;--white:#ffffff;--text:#1a1a2e;--muted:#6b7585;--border:#e2ddd5;--border-dark:rgba(184,135,42,0.2)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--text);font-family:'Outfit',sans-serif;font-weight:400;overflow-x:hidden;cursor:none}
+.cursor{position:fixed;width:8px;height:8px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform 0.15s}
+.cursor-ring{position:fixed;width:36px;height:36px;border:1px solid rgba(184,135,42,0.5);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width 0.25s,height 0.25s}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content:space-between;align-items:center;padding:1.5rem 5rem;background:rgba(250,248,244,0.93);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:box-shadow 0.3s}
+nav.scrolled{box-shadow:0 4px 40px rgba(0,0,0,0.06)}
+.nav-brand{display:flex;align-items:center;gap:0.9rem}
+.nav-monogram{width:38px;height:38px;background:var(--navy);display:flex;align-items:center;justify-content:center}
+.nav-monogram span{color:var(--gold-light);font-family:'Playfair Display',serif;font-size:1rem;font-weight:700}
+.nav-name{font-size:0.78rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--navy)}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{text-decoration:none;color:var(--muted);font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;font-weight:500;position:relative;padding-bottom:0.2rem;transition:color 0.2s}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--gold);transition:width 0.3s}
+.nav-links a:hover{color:var(--navy)}
+.nav-links a:hover::after{width:100%}
+.nav-cta{padding:0.6rem 1.5rem;background:var(--navy);color:var(--gold-light)!important;font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;font-weight:600;transition:background 0.2s}
+.nav-cta:hover{background:var(--gold)!important;color:var(--navy)!important}
+.nav-cta::after{display:none!important}
+
+/* HERO */
+#hero{min-height:100vh;display:grid;grid-template-columns:1fr 460px;background:var(--navy);position:relative;overflow:hidden;padding-top:80px}
+.hero-grid-bg{position:absolute;inset:0;pointer-events:none;overflow:hidden;opacity:0.035}
+.hero-grid-bg svg{width:100%;height:100%}
+.hero-left{padding:5rem 4rem 5rem 5rem;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:1}
+.hero-tag{display:inline-flex;align-items:center;gap:0.7rem;padding:0.45rem 1rem;border:1px solid rgba(184,135,42,0.35);margin-bottom:2.5rem;width:fit-content}
+.tag-dot{width:6px;height:6px;background:var(--gold-light);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.25}}
+.hero-tag span{font-size:0.67rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-light)}
+h1{font-family:'Playfair Display',serif;font-size:clamp(3rem,5.5vw,5.5rem);font-weight:400;line-height:1.08;color:var(--white)}
+h1 em{font-style:italic;color:var(--gold-light)}
+.hero-rule{width:60px;height:2px;background:linear-gradient(90deg,var(--gold),transparent);margin:2rem 0}
+.hero-summary{font-size:0.97rem;line-height:1.88;color:rgba(255,255,255,0.6);max-width:480px;margin-bottom:2.5rem}
+.hero-summary strong{color:rgba(255,255,255,0.9);font-weight:500}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-gold{padding:0.9rem 2.2rem;background:var(--gold);color:var(--navy);font-size:0.73rem;letter-spacing:0.18em;text-transform:uppercase;text-decoration:none;font-weight:700;transition:background 0.2s,transform 0.2s;display:inline-flex;align-items:center;gap:0.6rem}
+.btn-gold:hover{background:var(--gold-light);transform:translateY(-2px)}
+.btn-ghost{padding:0.9rem 2.2rem;border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);font-size:0.73rem;letter-spacing:0.18em;text-transform:uppercase;text-decoration:none;font-weight:400;transition:border-color 0.2s,color 0.2s}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold-light)}
+
+/* HERO RIGHT PANEL */
+.hero-right{background:var(--navy2);border-left:1px solid rgba(255,255,255,0.06);display:flex;flex-direction:column;padding:5rem 3.5rem 5rem 4rem;justify-content:center;position:relative;z-index:1}
+.hp-title{font-size:0.62rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:2.5rem;padding-bottom:1rem;border-bottom:1px solid rgba(255,255,255,0.07)}
+.kpi-stat{padding:1.7rem 0;border-bottom:1px solid rgba(255,255,255,0.06)}
+.kpi-stat:last-of-type{border-bottom:none}
+.kpi-num{font-family:'Playfair Display',serif;font-size:3rem;font-weight:400;color:var(--white);line-height:1;margin-bottom:0.25rem}
+.kpi-num em{font-style:normal;color:var(--gold-light)}
+.kpi-lbl{font-size:0.7rem;color:rgba(255,255,255,0.4);letter-spacing:0.08em;margin-bottom:0.6rem}
+.kpi-bar{height:2px;background:rgba(255,255,255,0.07);border-radius:2px;overflow:hidden}
+.kpi-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-light));width:0;transition:width 1.5s cubic-bezier(0.4,0,0.2,1)}
+.hero-badge{margin-top:2.5rem;padding:1.3rem 1.5rem;border:1px solid rgba(184,135,42,0.22);background:rgba(184,135,42,0.05);display:flex;gap:0.9rem;align-items:flex-start}
+.hb-icon{font-size:1rem;flex-shrink:0;margin-top:0.1rem}
+.hb-strong{font-size:0.78rem;color:var(--gold-light);font-weight:600;margin-bottom:0.2rem}
+.hb-text{font-size:0.71rem;color:rgba(255,255,255,0.45);line-height:1.5}
+
+/* IMPACT */
+#impact{background:var(--white);padding:6.5rem 5rem}
+.sec-eye{display:flex;align-items:center;gap:0.8rem;margin-bottom:0.8rem}
+.eye-line{width:32px;height:2px;background:var(--gold)}
+.eye-txt{font-size:0.63rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.sec-h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:400;line-height:1.15;color:var(--navy);margin-bottom:1rem}
+.sec-h2 em{font-style:italic;color:var(--gold)}
+.sec-sub{font-size:0.92rem;color:var(--muted);line-height:1.75;max-width:520px;margin-bottom:3.5rem}
+.impact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5px;background:var(--border)}
+.ic{background:var(--white);padding:3rem 2.5rem;position:relative;overflow:hidden;transition:background 0.3s}
+.ic:hover{background:#fdfcf9}
+.ic::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform 0.4s}
+.ic:hover::before{transform:scaleX(1)}
+.ic-num{font-family:'Playfair Display',serif;font-size:4rem;font-weight:400;color:var(--navy);line-height:1;margin-bottom:0.4rem}
+.ic-num sub{font-size:2rem;color:var(--gold)}
+.ic-title{font-size:0.75rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--navy);margin-bottom:0.7rem}
+.ic-desc{font-size:0.83rem;color:var(--muted);line-height:1.65}
+.ic-badge{display:inline-flex;align-items:center;gap:0.4rem;margin-top:1.2rem;padding:0.28rem 0.75rem;background:var(--gold-pale);font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);font-weight:700}
+
+/* EXPERIENCE */
+#experience{padding:7rem 5rem;background:var(--cream)}
+.exp-layout{display:grid;grid-template-columns:280px 1fr;gap:5rem}
+.exp-sidebar{position:sticky;top:120px;height:fit-content}
+.exp-sidebar .sec-h2{margin-bottom:1.2rem}
+.exp-sidebar p{font-size:0.87rem;color:var(--muted);line-height:1.78;margin-bottom:2rem}
+.exp-ghost{font-family:'Playfair Display',serif;font-size:6rem;font-weight:400;color:transparent;-webkit-text-stroke:1px rgba(11,22,40,0.1);line-height:1;user-select:none}
+.exp-entries{display:flex;flex-direction:column}
+.ec{padding:3rem 3.5rem;background:var(--white);border:1px solid var(--border);border-bottom:none;position:relative;opacity:0;transform:translateX(25px);transition:opacity 0.6s,transform 0.6s,box-shadow 0.3s}
+.ec:last-child{border-bottom:1px solid var(--border)}
+.ec.vis{opacity:1;transform:translateX(0)}
+.ec:hover{box-shadow:inset 4px 0 0 var(--gold),0 4px 28px rgba(0,0,0,0.05)}
+.ec-header{display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:start;margin-bottom:1.8rem}
+.ec-badge{display:inline-flex;align-items:center;gap:0.45rem;margin-bottom:0.6rem}
+.ec-dot{width:5px;height:5px;background:var(--gold);border-radius:50%;flex-shrink:0}
+.ec-co{font-size:0.63rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);font-weight:700}
+.ec-role{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:500;color:var(--navy);line-height:1.25;margin-bottom:0.35rem}
+.ec-period{font-size:0.7rem;color:var(--muted);letter-spacing:0.08em}
+.ec-period-badge{padding:0.32rem 0.85rem;background:var(--navy);color:rgba(255,255,255,0.65);font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;white-space:nowrap;height:fit-content}
+.ach-list{margin-bottom:2rem}
+.ach-row{display:flex;gap:1rem;align-items:flex-start;padding:0.75rem 0;border-bottom:1px solid var(--border)}
+.ach-row:last-child{border-bottom:none}
+.ach-icon{width:26px;height:26px;background:var(--gold-pale);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:0.15rem}
+.ach-icon svg{width:12px;height:12px;fill:none;stroke:var(--gold);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.ach-txt{font-size:0.86rem;line-height:1.68;color:var(--text)}
+.ach-txt strong{color:var(--navy);font-weight:600}
+.kpi-strip{display:flex;gap:1px;background:var(--border);border:1px solid var(--border)}
+.ks-box{flex:1;background:#f9f7f3;padding:1.2rem;text-align:center}
+.ks-num{font-family:'Playfair Display',serif;font-size:1.7rem;color:var(--navy);font-weight:400;line-height:1}
+.ks-num em{color:var(--gold);font-style:normal}
+.ks-lbl{font-size:0.58rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-top:0.3rem}
+
+/* SKILLS */
+#skills{padding:7rem 5rem;background:var(--navy)}
+#skills .sec-h2{color:var(--white)}
+#skills .sec-sub{color:rgba(255,255,255,0.4)}
+.sk-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.sk-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);padding:2.5rem;transition:background 0.3s,border-color 0.3s}
+.sk-card:hover{background:rgba(255,255,255,0.06);border-color:rgba(184,135,42,0.25)}
+.sk-head{display:flex;align-items:center;gap:1rem;margin-bottom:1.8rem;padding-bottom:1.5rem;border-bottom:1px solid rgba(255,255,255,0.06)}
+.sk-icon{width:40px;height:40px;background:rgba(184,135,42,0.1);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.sk-cat{font-size:0.58rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:0.15rem}
+.sk-name{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--white);font-weight:400}
+.sk-items{display:flex;flex-direction:column;gap:0.95rem}
+.sk-row{display:flex;flex-direction:column;gap:0.38rem}
+.sk-label{font-size:0.73rem;color:rgba(255,255,255,0.5);display:flex;justify-content:space-between}
+.sk-label span{color:var(--gold-light);font-weight:500}
+.sk-bar{height:2px;background:rgba(255,255,255,0.07);border-radius:2px;overflow:hidden}
+.sk-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-light));width:0;transition:width 1.4s cubic-bezier(0.4,0,0.2,1)}
+.tools-wrap{grid-column:1/-1;display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.06)}
+.tool-pill{background:var(--navy2);padding:1rem 1.2rem;display:flex;flex-direction:column;align-items:center;gap:0.35rem;text-align:center;transition:background 0.2s}
+.tool-pill:hover{background:rgba(184,135,42,0.07)}
+.tp-name{font-size:0.73rem;color:rgba(255,255,255,0.65);font-weight:500}
+.tp-cat{font-size:0.55rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.2)}
+
+/* ABOUT */
+#about{padding:7rem 5rem;background:var(--white)}
+.ab-grid{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start}
+.ab-left .sec-h2{margin-bottom:1.8rem}
+.ab-para{font-size:0.9rem;color:var(--muted);line-height:1.88;margin-bottom:1.1rem}
+.ab-quote{margin-top:2.5rem;padding:2rem 2.5rem;background:var(--navy);border-left:3px solid var(--gold)}
+.abq-txt{font-family:'Playfair Display',serif;font-size:1.1rem;font-style:italic;color:rgba(255,255,255,0.82);line-height:1.65;margin-bottom:0.5rem}
+.abq-attr{font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.ab-right{display:flex;flex-direction:column;gap:1.5rem}
+.profile-card{background:var(--cream);border:1px solid var(--border);padding:2.5rem}
+.pc-lbl{font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;font-weight:700}
+.pc-row{display:flex;justify-content:space-between;align-items:center;padding:0.75rem 0;border-bottom:1px solid var(--border)}
+.pc-row:last-child{border-bottom:none}
+.pc-k{font-size:0.75rem;color:var(--muted)}
+.pc-v{font-size:0.8rem;color:var(--navy);font-weight:600;text-align:right}
+.edu-card{background:var(--navy);padding:2.5rem}
+.edu-lbl{font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;font-weight:700}
+.edu-item{padding:1.1rem 0;border-bottom:1px solid rgba(255,255,255,0.06)}
+.edu-item:last-child{border-bottom:none;padding-bottom:0}
+.edu-deg{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--white);margin-bottom:0.25rem}
+.edu-inst{font-size:0.72rem;color:rgba(255,255,255,0.38)}
+.cert-tag{display:inline-flex;align-items:center;gap:0.4rem;margin-top:0.4rem;padding:0.2rem 0.65rem;border:1px solid rgba(184,135,42,0.35);font-size:0.58rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);font-weight:600}
+
+/* TIMELINE */
+#timeline{background:var(--cream);overflow-x:auto;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.tl-inner{display:flex;min-width:max-content;padding:2.5rem 5rem}
+.tl-item{padding:1.5rem 3rem;border-right:1px solid var(--border);min-width:200px;transition:background 0.2s;cursor:default}
+.tl-item:first-child{padding-left:0}
+.tl-item:last-child{border-right:none}
+.tl-item:hover{background:rgba(184,135,42,0.04)}
+.tl-year{font-family:'Playfair Display',serif;font-size:2rem;color:var(--navy);line-height:1;margin-bottom:0.4rem}
+.tl-co{font-size:0.63rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:0.2rem}
+.tl-role{font-size:0.78rem;color:var(--muted)}
+.tl-item.tl-next .tl-year{color:var(--gold)}
+
+/* CONTACT */
+#contact{background:var(--navy);padding:7rem 5rem;position:relative;overflow:hidden}
+#contact::after{content:'';position:absolute;right:-20%;bottom:-30%;width:60vw;height:60vw;border-radius:50%;background:radial-gradient(circle,rgba(184,135,42,0.05) 0%,transparent 70%);pointer-events:none}
+.ct-grid{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;position:relative;z-index:1}
+.ct-left .sec-h2{color:var(--white);margin-bottom:1.2rem}
+.ct-left p{font-size:0.92rem;color:rgba(255,255,255,0.48);line-height:1.82;margin-bottom:2.5rem}
+.reloc-tag{display:inline-flex;align-items:center;gap:0.6rem;padding:0.45rem 1.1rem;border:1px solid rgba(184,135,42,0.3);background:rgba(184,135,42,0.06);margin-bottom:1.8rem;width:fit-content}
+.rt-dot{width:6px;height:6px;background:var(--gold-light);border-radius:50%;animation:pulse 2s infinite}
+.rt-txt{font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-light)}
+.ct-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);padding:3rem}
+.ctc-lbl{font-size:0.6rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:2rem;padding-bottom:1rem;border-bottom:1px solid rgba(255,255,255,0.06)}
+.ctc-row{display:flex;align-items:center;gap:1.2rem;padding:1.2rem 0;border-bottom:1px solid rgba(255,255,255,0.05)}
+.ctc-row:last-child{border-bottom:none}
+.ctc-icon{width:38px;height:38px;background:rgba(184,135,42,0.1);display:flex;align-items:center;justify-content:center;font-size:0.9rem;flex-shrink:0}
+.ctc-type{font-size:0.58rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.27);margin-bottom:0.28rem}
+.ctc-val{font-size:0.86rem;color:rgba(255,255,255,0.78);font-weight:500}
+.ctc-val a{color:inherit;text-decoration:none;transition:color 0.2s}
+.ctc-val a:hover{color:var(--gold-light)}
+.ctc-highlight{color:var(--gold-light)!important}
+
+/* FOOTER */
+footer{background:var(--navy2);padding:2rem 5rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,0.05);flex-wrap:wrap;gap:1rem}
+.ft-brand{font-family:'Playfair Display',serif;font-size:1rem;color:rgba(255,255,255,0.35)}
+.ft-brand em{font-style:italic;color:var(--gold)}
+footer p{font-size:0.68rem;color:rgba(255,255,255,0.2);letter-spacing:0.08em}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(35px)}to{opacity:1;transform:translateY(0)}}
+.hero-left>*{animation:fadeUp 0.9s both}
+.hero-left>*:nth-child(1){animation-delay:0.1s}
+.hero-left>*:nth-child(2){animation-delay:0.25s}
+.hero-left>*:nth-child(3){animation-delay:0.35s}
+.hero-left>*:nth-child(4){animation-delay:0.45s}
+.hero-left>*:nth-child(5){animation-delay:0.55s}
+.hero-right{animation:fadeUp 0.9s 0.45s both}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.7s,transform 0.7s}
+.reveal.vis{opacity:1;transform:translateY(0)}
+.rd1{transition-delay:0.1s}.rd2{transition-delay:0.2s}.rd3{transition-delay:0.3s}
+
+/* RESPONSIVE */
+@media(max-width:1100px){
+  #hero{grid-template-columns:1fr}
+  .hero-right{display:none}
+  nav{padding:1.2rem 2rem}
+  .nav-links{display:none}
+  #impact,#experience,#skills,#about,#contact{padding:5rem 2rem}
+  .exp-layout,.ab-grid,.ct-grid{grid-template-columns:1fr}
+  .exp-sidebar{position:static}
+  .sk-grid{grid-template-columns:1fr}
+  .tools-wrap{grid-template-columns:repeat(3,1fr);grid-column:1}
+  .impact-grid{grid-template-columns:1fr}
+  #timeline{padding:0}
+  .tl-inner{padding:2rem}
+  footer{padding:2rem;flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cur"></div>
+<div class="cursor-ring" id="curRing"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-brand">
+    <div class="nav-monogram"><span>ZP</span></div>
+    <span class="nav-name">Zain Pasha S</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#impact">Impact</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#about">Profile</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a class="nav-links nav-cta" href="mailto:Zain.pasha748@gmail.com">Hire Me</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid-bg">
+    <svg viewBox="0 0 1200 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <line x1="0" y1="225" x2="1200" y2="225" stroke="white" stroke-width="0.6"/>
+      <line x1="0" y1="450" x2="1200" y2="450" stroke="white" stroke-width="0.6"/>
+      <line x1="0" y1="675" x2="1200" y2="675" stroke="white" stroke-width="0.6"/>
+      <line x1="300" y1="0" x2="300" y2="900" stroke="white" stroke-width="0.6"/>
+      <line x1="700" y1="0" x2="700" y2="900" stroke="white" stroke-width="0.6"/>
+      <line x1="1050" y1="0" x2="1050" y2="900" stroke="white" stroke-width="0.6"/>
+    </svg>
+  </div>
+  <div class="hero-left">
+    <div class="hero-tag"><div class="tag-dot"></div><span>Available for Global Opportunities · UAE Relocation Ready</span></div>
+    <h1>Customer<br><em>Success</em><br>Executive</h1>
+    <div class="hero-rule"></div>
+    <p class="hero-summary"><strong>Zain Pasha S</strong> is a results-driven operations leader with <strong>11+ years</strong> transforming customer success across India's leading Fintech, AI SaaS, and B2B Enterprise organizations. Architect of processes that <strong>reduced merchant onboarding time by 83%</strong>, delivering measurable ROI at enterprise scale.</p>
+    <div class="hero-actions">
+      <a class="btn-gold" href="#contact">↓ Connect with Me</a>
+      <a class="btn-ghost" href="#experience">View Experience</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hp-title">Career Performance Highlights</div>
+    <div class="kpi-stat">
+      <div class="kpi-num"><em>83</em>%</div>
+      <div class="kpi-lbl">Onboarding TAT Reduction · Razorpay · 12 days → 2 days</div>
+      <div class="kpi-bar"><div class="kpi-fill" data-w="83"></div></div>
+    </div>
+    <div class="kpi-stat">
+      <div class="kpi-num"><em>102</em>%</div>
+      <div class="kpi-lbl">VKYC Success Rate Uplift · PhonePe · 36.6% → 74.16%</div>
+      <div class="kpi-bar"><div class="kpi-fill" data-w="100"></div></div>
+    </div>
+    <div class="kpi-stat">
+      <div class="kpi-num"><em>40</em>%</div>
+      <div class="kpi-lbl">Fraud Reduction · Talview · Zero false positives</div>
+      <div class="kpi-bar"><div class="kpi-fill" data-w="40"></div></div>
+    </div>
+    <div class="kpi-stat">
+      <div class="kpi-num">+<em>30</em></div>
+      <div class="kpi-lbl">NPS Points Gained · Razorpay · 15% churn reduction</div>
+      <div class="kpi-bar"><div class="kpi-fill" data-w="68"></div></div>
+    </div>
+    <div class="hero-badge">
+      <span class="hb-icon">🌏</span>
+      <div>
+        <div class="hb-strong">Open to Relocate — UAE</div>
+        <div class="hb-text">Seeking senior leadership roles in Fintech, AI SaaS, or Enterprise Customer Operations across the GCC region</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT -->
+<section id="impact">
+  <div class="reveal">
+    <div class="sec-eye"><div class="eye-line"></div><span class="eye-txt">Quantified Impact</span></div>
+    <div class="sec-h2">Achievements That<br><em>Move the Needle</em></div>
+    <p class="sec-sub">Every metric below represents a real transformation — not just a number, but a process redesigned, a team elevated, and a business outcome delivered at enterprise scale.</p>
+  </div>
+  <div class="impact-grid">
+    <div class="ic reveal">
+      <div class="ic-num"><span class="counter" data-t="83">0</span><sub>%</sub></div>
+      <div class="ic-title">TAT Reduction</div>
+      <div class="ic-desc">Compressed merchant onboarding from <strong>12 days to just 2 days</strong> at Razorpay through workflow re-engineering, automated SLA gates, and cross-functional alignment — saving 10 working days per merchant lifecycle and accelerating revenue activation.</div>
+      <div class="ic-badge">🏦 Razorpay Fintech</div>
+    </div>
+    <div class="ic reveal rd1">
+      <div class="ic-num"><span class="counter" data-t="102">0</span><sub>%</sub></div>
+      <div class="ic-title">VKYC Success Rate Uplift</div>
+      <div class="ic-desc">Led VKYC 2.0 transformation at PhonePe, lifting success rate from <strong>36.6% to 74.16%</strong>. Scaled operations to 1,540 verified calls in Month 1. Tightened quality variance from 5.0% to 1.80%, targeting 0.98%.</div>
+      <div class="ic-badge">📱 PhonePe</div>
+    </div>
+    <div class="ic reveal rd2">
+      <div class="ic-num"><span class="counter" data-t="40">0</span><sub>%</sub></div>
+      <div class="ic-title">Fraud Attempt Reduction</div>
+      <div class="ic-desc">Enhanced AI facial and voice recognition systems at Talview, achieving a <strong>40% drop in fraud attempts with zero false positives</strong> — protecting 50+ enterprise clients and maintaining 99.9% platform integrity and uptime.</div>
+      <div class="ic-badge">🤖 Talview AI SaaS</div>
+    </div>
+    <div class="ic reveal">
+      <div class="ic-num">+<span class="counter" data-t="30">0</span></div>
+      <div class="ic-title">NPS Points Gained</div>
+      <div class="ic-desc">Delivered a <strong>30-point NPS improvement</strong> at Razorpay alongside a 15% churn reduction through proactive merchant health checks, data-driven segmentation, and structured escalation management playbooks.</div>
+      <div class="ic-badge">🏦 Razorpay Fintech</div>
+    </div>
+    <div class="ic reveal rd1">
+      <div class="ic-num"><span class="counter" data-t="15">0</span><sub>%</sub></div>
+      <div class="ic-title">Lost Volume Recovered</div>
+      <div class="ic-desc">Established a dedicated <strong>Outbound Recovery Desk</strong> for UTV (Unable to Verify) cases at PhonePe, converting previously abandoned merchant cases back into active verifications — reclaiming 15% of lost volume through structured re-engagement.</div>
+      <div class="ic-badge">📱 PhonePe</div>
+    </div>
+    <div class="ic reveal rd2">
+      <div class="ic-num"><span class="counter" data-t="25">0</span><sub>%</sub></div>
+      <div class="ic-title">Productivity Gain</div>
+      <div class="ic-desc">Led a <strong>25-member operations team at Concentrix</strong> to 25% accuracy improvement and 20% productivity gain. Collaborated with IT to automate manual workflows, cutting operational effort by 40% — establishing the foundation for a scalable operations model.</div>
+      <div class="ic-badge">🏢 Concentrix</div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<div id="timeline">
+  <div class="tl-inner">
+    <div class="tl-item"><div class="tl-year">2015</div><div class="tl-co">Concentrix</div><div class="tl-role">Team Leader</div></div>
+    <div class="tl-item"><div class="tl-year">2021</div><div class="tl-co">Razorpay</div><div class="tl-role">Customer Success Manager</div></div>
+    <div class="tl-item"><div class="tl-year">2024</div><div class="tl-co">Talview</div><div class="tl-role">Senior Team Lead – Operations</div></div>
+    <div class="tl-item"><div class="tl-year">2025</div><div class="tl-co">PhonePe</div><div class="tl-role">Customer Success Manager</div></div>
+    <div class="tl-item tl-next"><div class="tl-year">Next</div><div class="tl-co">UAE / GCC Region</div><div class="tl-role">Senior Leadership Role</div></div>
+  </div>
+</div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="exp-layout">
+    <div class="exp-sidebar reveal">
+      <div class="sec-eye" style="margin-bottom:0.8rem"><div class="eye-line"></div><span class="eye-txt">Career History</span></div>
+      <div class="sec-h2">Professional<br><em>Experience</em></div>
+      <p>Eleven years of progressive leadership across customer success, fintech operations, and AI-powered platforms — with a consistent record of exceeding KPIs and building resilient, high-performing teams.</p>
+      <div class="exp-ghost">11+</div>
+    </div>
+    <div class="exp-entries">
+
+      <!-- PhonePe -->
+      <div class="ec">
+        <div class="ec-header">
+          <div>
+            <div class="ec-badge"><div class="ec-dot"></div><div class="ec-co">PhonePe · Merchant Experience</div></div>
+            <div class="ec-role">Customer Success Manager</div>
+            <div class="ec-period">September 2025 – Present · Bangalore, India</div>
+          </div>
+          <div class="ec-period-badge">Current</div>
+        </div>
+        <div class="ach-list">
+          <div class="ach-row">
+            <div class="ach-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="ach-txt"><strong>VKYC 2.0 Programme Launch:</strong> Spearheaded the end-to-end transition from legacy EDD to VKYC 2.0 (Online ASD), scaling from zero to <strong>1,540 verified merchant calls within the first month</strong> — establishing a new operational benchmark for digital merchant verification at scale.</div>
+          </div>
+          <div class="ach-row">
+            <div class="ach-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="ach-txt"><strong>102% Success Rate Improvement:</strong> Elevated VKYC success rate from a legacy baseline of <strong>36.6% to 74.16%</strong> — more than doubling performance. Concurrently reduced Maker-Checker quality variance from 5.0% to 1.80%, with an active target of 0.98%, institutionalizing a Quality First culture.</div>
+          </div>
+          <div class="ach-row">
+            <div class="ach-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="ach-txt"><strong>Hybrid Team Build & Training:</strong> Recruited, onboarded, and developed an in-house team of <strong>7 VKYC specialists from scratch</strong>. Created proprietary Communication & Soft Skills training modules — directly improving merchant interaction quality scores and first-call resolution rates.</div>
+          </div>
+          <div class="ach-row">
+            <div class="ach-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="ach-txt"><strong>Pre-call Friction Elimination:</strong> Designed and deployed a <strong>Pre-call Readiness Checklist and Mandatory Document Upload gate</strong> — filtering unprepared merchants before agent engagement, reducing wasted call attempts and optimizing bandwidth by an estimated 30%.</div>
+          </div>
+          <div class="ach-row">
+            <div class="ach-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="ach-txt"><strong>Revenue Recovery Initiative:</strong> Established a dedicated <strong>Outbound Recovery Desk</strong> targeting UTV (Unable to Verify) cases — turning lost volume into active verifications and successfully <strong>reclaiming 15% of previously abandoned merchant applications</strong>.</div>
+          </div>
+        </div>
+        <div class="kpi-strip">
+          <div class="ks-box"><div class="ks-num"><em>74.16</em>%</div><div class="ks-lbl">VKYC Success</div></div>
+          <div class="ks-box"><div class="ks-num"><em>1,540</em></div><div class="ks-lbl">Calls · Month 1</div></div>
+          <div class="ks-box"><div class="ks-num"><em>1.80</em>%</div><div class="ks-lbl">Quality Variance</div></div>
+          <div class="ks-box"><div class="ks-num"><em>15</em>%</div><div class="ks-lbl">Volume Recovered</div></div>
+        </div>
+      </div>
+
+      <!-- Talview -->
+      <div class="ec">
+        <div class="ec-header">
+          <div>
+            <div class="ec-badge"><div class="ec-dot"></div><div class="ec-co">Talview · AI SaaS Platform</div></div>
+            <div class="ec-role">Senior Team Lead — Operations</div>
+            <div class="ec-period">November 2024 – October 2025 · 11 months</div>
+          </div>
+          <div class="ec-period-badge">2024–2025</div>
+        </div>
+        <div class="ach-list">
+          <div class="ach-row">
+            <div class="ach-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="ach-txt"><strong>Enterprise Platform Reliability:</strong> Managed full operational support for an AI-powered proctoring and talent assessment platform, ensuring <strong>99.9% uptime across 50+ enterprise clients</strong> — including global corporations and public institutions with zero tolerance for downtime.</div>
+          </div>
+          <div class="ach-row">
+            <div class="ach-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="ach-txt"><strong>AI Integrity & Fraud Prevention:</strong> Partnered with product and engineering teams to enhance <strong>facial recognition and voice biometric systems</strong>. Achieved a 40% reduction in fraudulent verification attempts with zero false positives — significantly strengthening trust and compliance for enterprise clients.</div>
+          </div>
+          <div class="ach-row">
+            <div class="ach-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="ach-txt"><strong>SOP Redesign & Automation:</strong> Overhauled core operational SOPs and introduced targeted workflow automation, <strong>reducing average resolution time by 20%</strong> and boosting team productivity by 25% — without any headcount increase.</div>
+          </div>
+        </div>
+        <div class="kpi-strip">
+          <div class="ks-box"><div class="ks-num"><em>99.9</em>%</div><div class="ks-lbl">Uptime SLA</div></div>
+          <div class="ks-box"><div class="ks-num"><em>50</em>+</div><div class="ks-lbl">Enterprise Clients</div></div>
+          <div class="ks-box"><div class="ks-num"><em>40</em>%</div><div class="ks-lbl">Fraud Reduced</div></div>
+          <div class="ks-box"><div class="ks-num"><em>0</em></div><div class="ks-lbl">False Positives</div></div>
+        </div>
+      </div>
+
+      <!-- Razorpay -->
+      <div class="ec">
+        <div class="ec-header">
+          <div>
+            <div class="ec-badge"><div class="ec-dot"></div><div class="ec-co">Razorpay Fintech Ltd</div></div>
+            <div class="ec-role">Customer Success Manager</div>
+            <div class="ec-period">September 2021 – October 2024 · 3 years 1 month</div>
+          </div>
+          <div class="ec-period-badge">2021–2024</div>
+        </div>
+        <div class="ach-list">
+          <div class="ach-row">
+            <div class="ach-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="ach-txt"><strong>Industry-Leading TAT Optimization:</strong> Re-engineered the complete merchant onboarding lifecycle — compressing processing time from <strong>12 working days down to 2 days</strong>, an 83% improvement. Achieved through automated approval workflows, SLA restructuring, and alignment across risk, compliance, and operations teams.</div>
+          </div>
+          <div class="ach-row">
+            <div class="ach-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="ach-txt"><strong>NPS Transformation:</strong> Delivered a <strong>30-point Net Promoter Score improvement</strong> by building and executing a structured merchant success program — including health-check outreach, proactive intervention triggers, and executive-level escalation management that positioned merchant experience as a strategic differentiator.</div>
+          </div>
+          <div class="ach-row">
+            <div class="ach-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="ach-txt"><strong>Churn Prevention at Scale:</strong> Reduced merchant churn by <strong>15%</strong> by implementing data-driven risk signals, early warning dashboards, and a tailored retention playbook — protecting revenue at one of India's largest and fastest-growing payment gateways.</div>
+          </div>
+        </div>
+        <div class="kpi-strip">
+          <div class="ks-box"><div class="ks-num"><em>83</em>%</div><div class="ks-lbl">TAT Reduction</div></div>
+          <div class="ks-box"><div class="ks-num"><em>12→2</em></div><div class="ks-lbl">Days Onboarding</div></div>
+          <div class="ks-box"><div class="ks-num">+<em>30</em></div><div class="ks-lbl">NPS Points</div></div>
+          <div class="ks-box"><div class="ks-num"><em>15</em>%</div><div class="ks-lbl">Churn Reduced</div></div>
+        </div>
+      </div>
+
+      <!-- Concentrix -->
+      <div class="ec">
+        <div class="ec-header">
+          <div>
+            <div class="ec-badge"><div class="ec-dot"></div><div class="ec-co">Concentrix Pvt Ltd</div></div>
+            <div class="ec-role">Team Leader</div>
+            <div class="ec-period">January 2015 – September 2021 · 6 years 9 months</div>
+          </div>
+          <div class="ec-period-badge">2015–2021</div>
+        </div>
+        <div class="ach-list">
+          <div class="ach-row">
+            <div class="ach-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="ach-txt"><strong>High-Performance Team Leadership:</strong> Led a <strong>25-member operations team</strong> through structured coaching, performance management frameworks, and weekly quality calibration sessions — achieving a <strong>25% accuracy improvement and 20% productivity gain</strong> within 12 months, setting records for the business unit.</div>
+          </div>
+          <div class="ach-row">
+            <div class="ach-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="ach-txt"><strong>Workflow Automation Initiative:</strong> Identified, scoped, and co-delivered <strong>workflow automation solutions</strong> in partnership with IT — eliminating repetitive manual processes and reducing total operational effort by <strong>40%</strong>, freeing agent capacity for high-value customer interactions and strategic work.</div>
+          </div>
+        </div>
+        <div class="kpi-strip">
+          <div class="ks-box"><div class="ks-num"><em>25</em></div><div class="ks-lbl">Team Size</div></div>
+          <div class="ks-box"><div class="ks-num"><em>25</em>%</div><div class="ks-lbl">Accuracy Gain</div></div>
+          <div class="ks-box"><div class="ks-num"><em>20</em>%</div><div class="ks-lbl">Productivity Gain</div></div>
+          <div class="ks-box"><div class="ks-num"><em>40</em>%</div><div class="ks-lbl">Effort Reduced</div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="reveal">
+    <div class="sec-eye" style="margin-bottom:0.8rem"><div class="eye-line"></div><span class="eye-txt">Core Competencies</span></div>
+    <div class="sec-h2">Skills &amp;<br><em>Expertise</em></div>
+    <p class="sec-sub">A powerful blend of strategic leadership, operational precision, and technical fluency — developed across 11+ years and multiple high-growth industries.</p>
+  </div>
+  <div class="sk-grid">
+    <div class="sk-card reveal">
+      <div class="sk-head">
+        <div class="sk-icon">🏆</div>
+        <div><div class="sk-cat">Leadership</div><div class="sk-name">Team & Strategy</div></div>
+      </div>
+      <div class="sk-items">
+        <div class="sk-row"><div class="sk-label">Hybrid Team Management<span>Expert</span></div><div class="sk-bar"><div class="sk-fill" data-w="95"></div></div></div>
+        <div class="sk-row"><div class="sk-label">Strategic Planning & Execution<span>Expert</span></div><div class="sk-bar"><div class="sk-fill" data-w="90"></div></div></div>
+        <div class="sk-row"><div class="sk-label">Stakeholder Communication<span>Advanced</span></div><div class="sk-bar"><div class="sk-fill" data-w="88"></div></div></div>
+        <div class="sk-row"><div class="sk-label">Vendor & Partner Management<span>Advanced</span></div><div class="sk-bar"><div class="sk-fill" data-w="85"></div></div></div>
+      </div>
+    </div>
+    <div class="sk-card reveal rd1">
+      <div class="sk-head">
+        <div class="sk-icon">⚙️</div>
+        <div><div class="sk-cat">Operations</div><div class="sk-name">Process Excellence</div></div>
+      </div>
+      <div class="sk-items">
+        <div class="sk-row"><div class="sk-label">Six Sigma Process Optimization<span>Expert</span></div><div class="sk-bar"><div class="sk-fill" data-w="92"></div></div></div>
+        <div class="sk-row"><div class="sk-label">VKYC / EDD Frameworks<span>Expert</span></div><div class="sk-bar"><div class="sk-fill" data-w="95"></div></div></div>
+        <div class="sk-row"><div class="sk-label">Risk & Fraud Mitigation<span>Advanced</span></div><div class="sk-bar"><div class="sk-fill" data-w="86"></div></div></div>
+        <div class="sk-row"><div class="sk-label">SOP Design & Automation<span>Expert</span></div><div class="sk-bar"><div class="sk-fill" data-w="91"></div></div></div>
+      </div>
+    </div>
+    <div class="tools-wrap reveal">
+      <div class="tool-pill"><div class="tp-name">Tableau</div><div class="tp-cat">Analytics</div></div>
+      <div class="tool-pill"><div class="tp-name">Looker</div><div class="tp-cat">Analytics</div></div>
+      <div class="tool-pill"><div class="tp-name">Salesforce</div><div class="tp-cat">CRM</div></div>
+      <div class="tool-pill"><div class="tp-name">Zendesk</div><div class="tp-cat">Support</div></div>
+      <div class="tool-pill"><div class="tp-name">Freshdesk</div><div class="tp-cat">Support</div></div>
+      <div class="tool-pill"><div class="tp-name">AI SaaS Ops</div><div class="tp-cat">Domain</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="ab-grid">
+    <div class="ab-left reveal">
+      <div class="sec-eye" style="margin-bottom:1rem"><div class="eye-line"></div><span class="eye-txt">Professional Profile</span></div>
+      <div class="sec-h2">The Leader Behind<br>the <em>Numbers</em></div>
+      <p class="ab-para">With over 11 years at the intersection of customer success, fintech operations, and AI-powered technology, I've built a career on one principle: <strong>sustainable, measurable excellence</strong>. Not one-time wins, but systems, cultures, and teams that keep performing long after a project closes.</p>
+      <p class="ab-para">At Razorpay, I didn't just cut onboarding time — I rebuilt the entire merchant journey, reducing TAT by 83% and driving a 30-point NPS gain. At PhonePe, I didn't just launch VKYC 2.0 — I designed a Quality First culture with measurable targets, scaling to 1,540 calls in Month 1. At Talview, I hardened AI system integrity for 50+ global enterprise clients.</p>
+      <p class="ab-para">I am now seeking a <strong>senior global leadership role in the UAE</strong>, where I can bring this proven track record of operational transformation to a high-growth organization ready to scale with precision and purpose.</p>
+      <div class="ab-quote">
+        <div class="abq-txt">"Operational excellence is not a project you complete — it's a standard you institutionalize, one process, one team, one merchant at a time."</div>
+        <div class="abq-attr">— Zain Pasha S · Customer Success Executive</div>
+      </div>
+    </div>
+    <div class="ab-right reveal rd1">
+      <div class="profile-card">
+        <div class="pc-lbl">Professional Snapshot</div>
+        <div class="pc-row"><span class="pc-k">Total Experience</span><span class="pc-v">11+ Years</span></div>
+        <div class="pc-row"><span class="pc-k">Domain Expertise</span><span class="pc-v">Fintech · AI SaaS · B2B</span></div>
+        <div class="pc-row"><span class="pc-k">Current Role</span><span class="pc-v">CS Manager · PhonePe</span></div>
+        <div class="pc-row"><span class="pc-k">Current Location</span><span class="pc-v">Bangalore, India</span></div>
+        <div class="pc-row"><span class="pc-k">Relocation</span><span class="pc-v" style="color:var(--gold)">Ready for UAE ✓</span></div>
+        <div class="pc-row"><span class="pc-k">Availability</span><span class="pc-v">Immediate</span></div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-lbl">Education & Certification</div>
+        <div class="edu-item">
+          <div class="edu-deg">Bachelor of Commerce</div>
+          <div class="edu-inst">Sheshadripuram Degree College · Bangalore University</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-deg">Six Sigma Yellow Belt</div>
+          <div class="edu-inst">Process Excellence · Certified</div>
+          <div class="cert-tag">✓ Certified Professional</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="ct-grid">
+    <div class="ct-left reveal">
+      <div class="reloc-tag"><div class="rt-dot"></div><span class="rt-txt">Open to Opportunities · UAE &amp; GCC Region</span></div>
+      <div class="sec-h2" style="color:var(--white)">Let's Build<br>Something <em>Exceptional</em></div>
+      <p>I'm actively exploring senior leadership opportunities in Customer Success, Operations, and Fintech across the UAE and broader GCC region. If you're building a high-growth team and need a proven operator — let's connect.</p>
+      <a class="btn-gold" href="mailto:Zain.pasha748@gmail.com">Send a Message ↗</a>
+    </div>
+    <div class="ct-card reveal rd1">
+      <div class="ctc-lbl">Contact Information</div>
+      <div class="ctc-row">
+        <div class="ctc-icon">✉</div>
+        <div><div class="ctc-type">Email</div><div class="ctc-val"><a href="mailto:Zain.pasha748@gmail.com">Zain.pasha748@gmail.com</a></div></div>
+      </div>
+      <div class="ctc-row">
+        <div class="ctc-icon">📞</div>
+        <div><div class="ctc-type">Phone / WhatsApp</div><div class="ctc-val"><a href="tel:+919035177753">+91 – 9035177753</a></div></div>
+      </div>
+      <div class="ctc-row">
+        <div class="ctc-icon">📍</div>
+        <div><div class="ctc-type">Current Location</div><div class="ctc-val">Bangalore, Karnataka, India</div></div>
+      </div>
+      <div class="ctc-row">
+        <div class="ctc-icon">🌏</div>
+        <div><div class="ctc-type">Target Location</div><div class="ctc-val ctc-highlight">UAE · GCC Region — Ready to Relocate</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-brand">Zain <em>Pasha</em> S</div>
+  <p>Customer Success Executive · 11+ Years · Fintech · AI SaaS · B2B Enterprise</p>
+  <p>© 2025 · All Rights Reserved</p>
+</footer>
+
+<script>
+// Cursor
+const cur = document.getElementById('cur');
+const ring = document.getElementById('curRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+(function animR(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animR)})();
+document.querySelectorAll('a,button').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.style.transform='translate(-50%,-50%) scale(2.5)';ring.style.width='58px';ring.style.height='58px'});
+  el.addEventListener('mouseleave',()=>{cur.style.transform='translate(-50%,-50%) scale(1)';ring.style.width='36px';ring.style.height='36px'});
+});
+
+// Scroll nav shadow
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',scrollY>40));
+
+// Intersection observer
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target)}})},{threshold:0.1});
+document.querySelectorAll('.reveal,.ec').forEach(el=>obs.observe(el));
+
+// Hero KPI bars (trigger on load after delay)
+setTimeout(()=>document.querySelectorAll('.kpi-fill').forEach(b=>b.style.width=b.dataset.w+'%'),800);
+
+// Skill bars on scroll
+const skObs=new IntersectionObserver(entries=>{
+  if(entries[0].isIntersecting){document.querySelectorAll('.sk-fill').forEach(b=>b.style.width=b.dataset.w+'%');skObs.disconnect()}
+},{threshold:0.2});
+const skEl=document.getElementById('skills');
+if(skEl)skObs.observe(skEl);
+
+// Counter animation
+function countUp(el,target){
+  let start=null,dur=2000;
+  function step(ts){
+    if(!start)start=ts;
+    let p=Math.min((ts-start)/dur,1);
+    let ease=1-Math.pow(1-p,3);
+    el.textContent=Math.floor(ease*target);
+    if(p<1)requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+const cObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.counter').forEach(c=>countUp(c,+c.dataset.t));cObs.unobserve(e.target)}});
+},{threshold:0.3});
+document.querySelectorAll('.ic').forEach(el=>cObs.observe(el));
+</script>
+</body>
+</html>
