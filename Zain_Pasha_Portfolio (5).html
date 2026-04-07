@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zain Pasha S — Customer Success Manager</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --gold-dim: rgba(201,168,76,0.15);
+    --dark: #0C0C0E;
+    --dark2: #131318;
+    --dark3: #1A1A22;
+    --dark4: #22222C;
+    --text: #E8E6DF;
+    --text-muted: #9A9690;
+    --text-dim: #5C5A55;
+    --border: rgba(201,168,76,0.2);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--dark);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+  /* NOISE TEXTURE OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.5rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(12,12,14,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: var(--gold);
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 8rem 4rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 60% 50%, rgba(201,168,76,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-line {
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 50%;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--border) 20%, var(--border) 80%, transparent);
+    opacity: 0.5;
+  }
+  .hero-content { position: relative; z-index: 1; max-width: 760px; }
+  .hero-eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    width: 40px; height: 1px;
+    background: var(--gold);
+  }
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 7vw, 6rem);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.5rem;
+  }
+  h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .hero-sub {
+    font-size: 1rem;
+    color: var(--text-muted);
+    max-width: 520px;
+    margin-bottom: 3rem;
+    line-height: 1.8;
+  }
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    margin-bottom: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.4rem;
+    font-weight: 500;
+    color: var(--gold);
+    line-height: 1;
+    display: block;
+  }
+  .stat-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-top: 0.4rem;
+  }
+  .cta-group { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: var(--gold);
+    color: var(--dark);
+    padding: 0.85rem 2rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: transparent;
+    color: var(--text-muted);
+    padding: 0.85rem 2rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    transition: all 0.3s;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+  /* SECTIONS */
+  section {
+    padding: 7rem 4rem;
+    position: relative;
+    z-index: 1;
+  }
+  .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .section-label::before { content: ''; width: 24px; height: 1px; background: var(--gold); }
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+  .section-divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, var(--border), transparent);
+    margin-bottom: 4rem;
+  }
+
+  /* ACHIEVEMENTS GRID */
+  #achievements { background: var(--dark2); }
+  .ach-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-top: 3rem;
+  }
+  .ach-card {
+    background: var(--dark2);
+    padding: 2.5rem 2rem;
+    transition: background 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .ach-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s;
+  }
+  .ach-card:hover::before { transform: scaleX(1); }
+  .ach-card:hover { background: var(--dark3); }
+  .ach-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.2rem;
+    font-weight: 500;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 0.75rem;
+  }
+  .ach-title {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.02em;
+  }
+  .ach-desc {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+  .ach-tag {
+    display: inline-block;
+    margin-top: 1rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid var(--border);
+    padding: 0.2rem 0.6rem;
+  }
+
+  /* EXPERIENCE */
+  #experience { background: var(--dark); }
+  .exp-list { margin-top: 3rem; display: flex; flex-direction: column; gap: 0; }
+  .exp-item {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 3rem;
+    padding: 3rem 0;
+    border-top: 1px solid var(--border);
+    transition: background 0.3s;
+  }
+  .exp-item:last-child { border-bottom: 1px solid var(--border); }
+  .exp-meta {}
+  .exp-company {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--gold);
+    margin-bottom: 0.3rem;
+  }
+  .exp-dates {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+  }
+  .exp-duration {
+    display: inline-block;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--gold-dim);
+    color: var(--gold);
+    padding: 0.2rem 0.7rem;
+    border: 1px solid var(--border);
+  }
+  .exp-role {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.01em;
+  }
+  .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .exp-bullets li {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    padding-left: 1.2rem;
+    position: relative;
+  }
+  .exp-bullets li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-size: 0.8rem;
+  }
+
+  /* SKILLS & COMPETENCIES */
+  #skills { background: var(--dark2); }
+  .skills-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    margin-top: 3rem;
+  }
+  .skills-group-title {
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .competency-list { display: flex; flex-direction: column; gap: 0.4rem; }
+  .competency-item {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    padding: 0.6rem 0;
+    border-bottom: 1px solid rgba(201,168,76,0.06);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    transition: color 0.2s;
+  }
+  .competency-item:hover { color: var(--text); }
+  .competency-item::before {
+    content: '';
+    width: 4px; height: 4px;
+    background: var(--gold);
+    flex-shrink: 0;
+    opacity: 0.7;
+  }
+  .tool-chips { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .chip {
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    padding: 0.4rem 1rem;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    background: transparent;
+    transition: all 0.25s;
+  }
+  .chip:hover { border-color: var(--gold); color: var(--gold); background: var(--gold-dim); }
+  .lang-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.6rem;
+    margin-top: 1.5rem;
+  }
+  .lang-item {
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--border);
+    background: var(--dark3);
+  }
+  .lang-name { font-size: 0.82rem; color: var(--text); font-weight: 500; }
+  .lang-level { font-size: 0.68rem; letter-spacing: 0.08em; color: var(--text-dim); text-transform: uppercase; }
+
+  /* CONTACT */
+  #contact {
+    background: var(--dark);
+    text-align: center;
+    padding: 8rem 4rem;
+  }
+  .contact-inner { max-width: 640px; margin: 0 auto; }
+  .contact-inner h2 { font-size: clamp(2.2rem, 5vw, 4rem); margin-bottom: 1rem; }
+  .contact-sub { color: var(--text-muted); margin-bottom: 3rem; font-size: 0.95rem; }
+  .contact-links { display: flex; flex-direction: column; gap: 1rem; align-items: center; }
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    transition: color 0.3s;
+  }
+  .contact-link:hover { color: var(--gold); }
+  .contact-link-icon {
+    width: 36px; height: 36px;
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+    transition: all 0.3s;
+  }
+  .contact-link:hover .contact-link-icon { border-color: var(--gold); background: var(--gold-dim); }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark2);
+    border-top: 1px solid var(--border);
+    padding: 2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+  }
+
+  /* ANIMATIONS */
+  .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 2rem; }
+    .nav-links { display: none; }
+    section { padding: 5rem 2rem; }
+    .hero { padding: 7rem 2rem 4rem; }
+    .ach-grid { grid-template-columns: 1fr 1fr; }
+    .exp-item { grid-template-columns: 1fr; gap: 1rem; }
+    .skills-layout { grid-template-columns: 1fr; gap: 3rem; }
+    .hero-stats { gap: 2rem; flex-wrap: wrap; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+  @media (max-width: 560px) {
+    .ach-grid { grid-template-columns: 1fr; }
+    .lang-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Zain Pasha S</div>
+  <ul class="nav-links">
+    <li><a href="#achievements">Impact</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-line"></div>
+  <div class="hero-content fade-in visible">
+    <div class="hero-eyebrow">Customer Success Manager</div>
+    <h1>Driving <em>retention,</em><br>growth &amp; loyalty<br>at scale</h1>
+    <p class="hero-sub">12+ years engineering customer success across Fintech, AI SaaS &amp; E-Commerce — with a track record of transforming onboarding, slashing churn, and building high-performance teams that deliver measurable outcomes.</p>
+    <div class="hero-stats">
+      <div>
+        <span class="stat-num">83%</span>
+        <div class="stat-label">Onboarding TAT Reduction</div>
+      </div>
+      <div>
+        <span class="stat-num">102%</span>
+        <div class="stat-label">Process Success Uplift</div>
+      </div>
+      <div>
+        <span class="stat-num">+30</span>
+        <div class="stat-label">NPS Point Improvement</div>
+      </div>
+      <div>
+        <span class="stat-num">12+</span>
+        <div class="stat-label">Years of Experience</div>
+      </div>
+    </div>
+    <div class="cta-group">
+      <a class="btn-primary" href="#contact">Get In Touch ↗</a>
+      <a class="btn-outline" href="#experience">View Experience</a>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="section-label">Proven Impact</div>
+  <h2>Results that<br><em style="font-style:italic; color:var(--gold)">move the needle</em></h2>
+  <div class="section-divider"></div>
+  <div class="ach-grid">
+    <div class="ach-card fade-in">
+      <div class="ach-number">83%</div>
+      <div class="ach-title">Onboarding TAT Reduction</div>
+      <div class="ach-desc">Compressed merchant activation from 12 days to 2 days — enabling faster time-to-revenue for SME &amp; enterprise merchants.</div>
+      <div class="ach-tag">Razorpay</div>
+    </div>
+    <div class="ach-card fade-in">
+      <div class="ach-number">102%</div>
+      <div class="ach-title">Process Success Rate Uplift</div>
+      <div class="ach-desc">Led VKYC 2.0 transformation, raising process success from 36.6% baseline to 74.16% — directly reducing revenue leakage.</div>
+      <div class="ach-tag">PhonePe</div>
+    </div>
+    <div class="ach-card fade-in">
+      <div class="ach-number">+30</div>
+      <div class="ach-title">NPS Points Gained</div>
+      <div class="ach-desc">Implemented proactive health-scoring frameworks using data-driven risk signals, transforming merchant sentiment.</div>
+      <div class="ach-tag">Razorpay</div>
+    </div>
+    <div class="ach-card fade-in">
+      <div class="ach-number">40%</div>
+      <div class="ach-title">Fraud Attempt Reduction</div>
+      <div class="ach-desc">Enhanced AI biometric verification models with zero false-positive incidents — protecting client data integrity.</div>
+      <div class="ach-tag">Talview</div>
+    </div>
+    <div class="ach-card fade-in">
+      <div class="ach-number">15%</div>
+      <div class="ach-title">Churn Reduction</div>
+      <div class="ach-desc">Data-driven customer engagement strategies and outbound recovery desk, reclaiming previously lost merchant volume.</div>
+      <div class="ach-tag">Razorpay · PhonePe</div>
+    </div>
+    <div class="ach-card fade-in">
+      <div class="ach-number">25%</div>
+      <div class="ach-title">Team Productivity Uplift</div>
+      <div class="ach-desc">Structured coaching, SOP redesign, and workflow automation across teams of 25–50+ FTEs — no headcount increase.</div>
+      <div class="ach-tag">Concentrix · Talview</div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">Career Timeline</div>
+  <h2>12 years of<br><em style="font-style:italic; color:var(--gold)">progressive leadership</em></h2>
+  <div class="section-divider"></div>
+  <div class="exp-list">
+
+    <div class="exp-item fade-in">
+      <div class="exp-meta">
+        <div class="exp-company">PhonePe</div>
+        <div class="exp-dates">Sep 2025 – Present</div>
+        <div class="exp-duration">7 months</div>
+      </div>
+      <div>
+        <div class="exp-role">Customer Success Manager — Merchant Experience Division</div>
+        <ul class="exp-bullets">
+          <li>Led VKYC 2.0 digital transformation from legacy EDD framework, scaling merchant verification to 1,540 calls within month one — establishing a new fintech onboarding benchmark.</li>
+          <li>Achieved 74.16% process success rate (102% improvement over 36.6% baseline), directly accelerating merchant activation and reducing revenue leakage.</li>
+          <li>Reduced Maker-Checker quality variance from 5.0% to 1.80% through structured audit cadences and a Quality First governance model.</li>
+          <li>Recruited, onboarded, and coached a team of 7 specialists; launched an Outbound Recovery Desk reclaiming 15% of lost merchant volume.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item fade-in">
+      <div class="exp-meta">
+        <div class="exp-company">Talview</div>
+        <div class="exp-dates">Nov 2024 – Oct 2025</div>
+        <div class="exp-duration">1 year</div>
+      </div>
+      <div>
+        <div class="exp-role">Senior Team Lead — Customer Operations (AI SaaS)</div>
+        <ul class="exp-bullets">
+          <li>Managed end-to-end operational support for an AI-powered talent intelligence platform serving 50+ enterprise clients with 99.9% uptime SLA.</li>
+          <li>Enhanced biometric verification models (facial recognition &amp; voice ID), reducing fraudulent assessment attempts by 40% with zero false positives.</li>
+          <li>Redesigned 12+ SOPs and introduced intelligent workflow automation — cutting resolution time by 20% and boosting productivity by 25%.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item fade-in">
+      <div class="exp-meta">
+        <div class="exp-company">Razorpay</div>
+        <div class="exp-dates">Sep 2021 – Oct 2024</div>
+        <div class="exp-duration">3 yrs 2 mos</div>
+      </div>
+      <div>
+        <div class="exp-role">Customer Success Manager — Fintech</div>
+        <ul class="exp-bullets">
+          <li>Re-engineered merchant onboarding workflow compressing activation TAT from 12 days to 2 days (83% improvement) across the payments ecosystem.</li>
+          <li>Reduced merchant churn by 15% and improved NPS by 30 points within 18 months through proactive health-scoring and data-driven risk signals.</li>
+          <li>Owned portfolio of high-value fintech &amp; e-commerce merchants; conducted QBRs and maintained executive-level relationships to drive long-term retention.</li>
+          <li>Partnered with Product, Risk and Engineering to translate merchant feedback into platform enhancements, improving feature adoption and reducing ticket volumes.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item fade-in">
+      <div class="exp-meta">
+        <div class="exp-company">Concentrix</div>
+        <div class="exp-dates">Jan 2015 – Sep 2021</div>
+        <div class="exp-duration">6 yrs 9 mos</div>
+      </div>
+      <div>
+        <div class="exp-role">Team Leader — Customer Experience Operations</div>
+        <ul class="exp-bullets">
+          <li>Directed a 25-member customer success team, delivering 25% quality accuracy improvement and 20% productivity gains through KPI-led performance management.</li>
+          <li>Achieved 40% reduction in manual processing effort by partnering with IT to automate high-volume workflows, freeing capacity for higher-value activities.</li>
+          <li>Designed and owned escalation resolution playbooks — reducing critical complaint cycle times and improving first-contact resolution across B2B and B2C accounts.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">Expertise</div>
+  <h2>Skills &amp;<br><em style="font-style:italic; color:var(--gold)">Capabilities</em></h2>
+  <div class="section-divider"></div>
+  <div class="skills-layout">
+    <div>
+      <div class="skills-group-title">Core Competencies</div>
+      <div class="competency-list">
+        <div class="competency-item">Customer Lifecycle Management</div>
+        <div class="competency-item">Churn Reduction &amp; Revenue Retention</div>
+        <div class="competency-item">NPS / CSAT / CES Optimisation</div>
+        <div class="competency-item">Merchant Onboarding &amp; KYC/VKYC</div>
+        <div class="competency-item">Enterprise Account Management</div>
+        <div class="competency-item">QBR &amp; Executive Business Reviews</div>
+        <div class="competency-item">Hybrid Team Leadership (50+ FTEs)</div>
+        <div class="competency-item">SOP Design &amp; Process Automation</div>
+        <div class="competency-item">Risk, Fraud &amp; Compliance Management</div>
+        <div class="competency-item">Six Sigma Process Improvement</div>
+      </div>
+    </div>
+    <div>
+      <div class="skills-group-title">Tools &amp; Technologies</div>
+      <div class="tool-chips" style="margin-bottom:2rem;">
+        <span class="chip">Salesforce</span>
+        <span class="chip">Zendesk</span>
+        <span class="chip">Freshdesk</span>
+        <span class="chip">Gainsight</span>
+        <span class="chip">ChurnZero</span>
+        <span class="chip">Tableau</span>
+        <span class="chip">Looker</span>
+        <span class="chip">Google Sheets</span>
+        <span class="chip">Six Sigma</span>
+        <span class="chip">Agile</span>
+        <span class="chip">VKYC/KYC</span>
+      </div>
+      <div class="skills-group-title">Languages</div>
+      <div class="lang-grid">
+        <div class="lang-item">
+          <div class="lang-name">English</div>
+          <div class="lang-level">Fluent</div>
+        </div>
+        <div class="lang-item">
+          <div class="lang-name">Hindi</div>
+          <div class="lang-level">Fluent</div>
+        </div>
+        <div class="lang-item">
+          <div class="lang-name">Urdu</div>
+          <div class="lang-level">Native</div>
+        </div>
+        <div class="lang-item">
+          <div class="lang-name">Tamil</div>
+          <div class="lang-level">Fluent</div>
+        </div>
+        <div class="lang-item">
+          <div class="lang-name">Telugu</div>
+          <div class="lang-level">Fluent</div>
+        </div>
+        <div class="lang-item">
+          <div class="lang-name">Arabic</div>
+          <div class="lang-level">Beginner</div>
+        </div>
+      </div>
+      <div style="margin-top:2rem;">
+        <div class="skills-group-title">Education &amp; Certification</div>
+        <div class="competency-list">
+          <div class="competency-item">B.Com — Sheshadripuram Degree College, Bangalore University</div>
+          <div class="competency-item">Certified Six Sigma Yellow Belt</div>
+          <div class="competency-item">Customer Success Management (Gainsight &amp; ChurnZero)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner fade-in">
+    <div class="section-label" style="justify-content:center;">Get In Touch</div>
+    <h2>Let's build<br><em style="font-style:italic; color:var(--gold)">something great</em></h2>
+    <p class="contact-sub">Available for senior Customer Success leadership roles in high-growth organisations across Fintech, AI SaaS, and E-Commerce verticals.</p>
+    <div class="contact-links">
+      <a class="contact-link" href="mailto:zain.pasha748@gmail.com">
+        <div class="contact-link-icon">✉</div>
+        zain.pasha748@gmail.com
+      </a>
+      <a class="contact-link" href="tel:+919035177753">
+        <div class="contact-link-icon">✆</div>
+        +91 90351 77753
+      </a>
+      <a class="contact-link" href="https://www.linkedin.com/in/zain-pasha-72b117157/" target="_blank">
+        <div class="contact-link-icon">in</div>
+        linkedin.com/in/zain-pasha-72b117157
+      </a>
+    </div>
+    <div style="margin-top:3rem;">
+      <a class="btn-primary" href="mailto:zain.pasha748@gmail.com">Send a Message ↗</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Zain Pasha S — Customer Success Manager</span>
+  <span>Bangalore, India</span>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, i * 100);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
